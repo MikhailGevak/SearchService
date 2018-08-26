@@ -7,7 +7,7 @@ import akka.http.scaladsl.testkit.ScalatestRouteTest
 import com.conductor.rest.DocumentService._
 import org.scalatest.{FlatSpecLike, Matchers}
 
-import scala.concurrent.{ExecutionContext, Future}
+import scala.concurrent.ExecutionContext
 
 class RoutTest extends Matchers with FlatSpecLike with ScalatestRouteTest {
   val added = Added("key", "document")
@@ -42,9 +42,7 @@ class RoutTest extends Matchers with FlatSpecLike with ScalatestRouteTest {
       }
     }
   }
-
   {
-
     val restRoute = new RestRoute {
       override implicit val executionContext: ExecutionContext = scala.concurrent.ExecutionContext.Implicits.global
       override val documentService: DocumentService = serviceStub.copy(getRes = None)
@@ -53,18 +51,6 @@ class RoutTest extends Matchers with FlatSpecLike with ScalatestRouteTest {
       Get("/document/key") ~> Route.seal(restRoute.route) ~> check {
         response.status should be(StatusCodes.NotFound)
       }
-
     }
   }
-}
-
-case class DocumentServiceStub(putRes: Added, getRes: Option[Document], searchRes: SearchResult) extends DocumentService {
-
-  import DocumentService._
-
-  override def put(key: String, document: String): Future[Added] = Future.successful(putRes)
-
-  override def get(key: String): Future[Option[Document]] = Future.successful(getRes)
-
-  override def search(tokens: Set[String]): Future[SearchResult] = Future.successful(searchRes)
 }

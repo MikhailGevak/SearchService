@@ -36,7 +36,7 @@ lazy val commonSettings = Seq(
 lazy val client = (project in file("./client"))
   .settings(
     commonSettings,
-    libraryDependencies ++= commonDependencies ++ Seq(dependencies.akkaHttp, dependencies.akkaStream)
+    libraryDependencies ++= commonDependencies ++ Seq(dependencies.akkaHttp, dependencies.akkaStream, dependencies.akkaHttpJson)
   )
 
 lazy val storage = (project in file("./storage"))
