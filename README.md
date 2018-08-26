@@ -8,7 +8,7 @@ To set a name of the main node (which routes requests to storage's nodes) ot's n
 storage
 {
   actor="StorageProvider"
-  =[0,0,0,0,0]
+  ports=[0,0,0,0,0]
 } 
 ```
 You can use storage on your system usinf akka's extension *com.conductor.storage.StorageExtension*
