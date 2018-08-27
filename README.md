@@ -19,7 +19,7 @@ Simple rest-service which uses  *com.conductor.storage.StorageExtension*. Therea
   - Get request */document/$key* to get document. It returns 404 response if document can't be found.
   - Get request */document/query=[...]* to get document's key which contains all tokens. 
  
- To run service use com.conductor.rest.RestApp
+ To run service use com.conductor.rest.RestApp. Storage is run automatically!
  To set *host* and *port* of the service use properies *http.host* and *http.port*
   
 # client
